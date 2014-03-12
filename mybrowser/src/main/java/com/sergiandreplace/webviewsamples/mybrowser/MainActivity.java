@@ -1,6 +1,7 @@
 package com.sergiandreplace.webviewsamples.mybrowser;
 
 import android.annotation.TargetApi;
+import android.graphics.Bitmap;
 import android.os.Build;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -9,7 +10,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.EditText;
+import android.widget.Toast;
 
 
 public class MainActivity extends ActionBarActivity implements View.OnClickListener {
@@ -51,6 +54,29 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         webSettings.setSupportZoom(true);
         webSettings.setBuiltInZoomControls(true);
 
+        browser.setWebViewClient(new MyWebViewClient());
+    }
+
+
+
+    private class MyWebViewClient extends WebViewClient {
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            view.loadUrl(url);
+            return true;
+        }
+
+        @Override
+        public void onPageFinished(WebView view, String url) {
+            super.onPageFinished(view, url);
+            Toast.makeText(MainActivity.this,"Loaded!",Toast.LENGTH_SHORT).show();
+        }
+
+        @Override
+        public void onPageStarted(WebView view, String url, Bitmap favicon) {
+            super.onPageStarted(view, url, favicon);
+            Toast.makeText(MainActivity.this,"Loading...",Toast.LENGTH_SHORT).show();
+        }
     }
 
 
