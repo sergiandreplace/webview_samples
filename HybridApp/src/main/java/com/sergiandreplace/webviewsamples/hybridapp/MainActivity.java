@@ -23,6 +23,7 @@ public class MainActivity extends ActionBarActivity {
         webView.getSettings().setJavaScriptEnabled(true);
         webView.addJavascriptInterface(new InjectableJava(this), "Android");
         webView.setWebViewClient(new MyWebViewClient());
+        webView.loadUrl("javascript:changeBackground()");
     }
 
     private class MyWebViewClient extends WebViewClient {
@@ -35,6 +36,13 @@ public class MainActivity extends ActionBarActivity {
                 view.loadUrl(url);
             }
             return true;
+        }
+
+        @Override
+        public void onPageFinished(WebView view, String url) {
+            super.onPageFinished(view, url);
+            webView.loadUrl("javascript:changeBackground ()");
+
         }
     }
 
