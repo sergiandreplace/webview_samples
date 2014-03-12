@@ -1,1 +1,1 @@
-include ':mybrowser'
+include ':mybrowser', ':HybridApp'

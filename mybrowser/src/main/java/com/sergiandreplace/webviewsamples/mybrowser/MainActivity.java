@@ -93,7 +93,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
             Log.d("Progress", "Current progress:"+newProgress);
         }
 
-   
+
     }
 
 
