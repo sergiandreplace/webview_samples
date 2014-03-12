@@ -15,7 +15,8 @@
         android:layout_alignBaseline="@+id/go"
         android:layout_alignParentLeft="true"
         android:layout_marginRight="8dp"
-        android:layout_toLeftOf="@id/go" />
+        android:layout_toLeftOf="@id/go"
+        android:text="http://sergiandreplace.com"/>
 
     <Button
         android:id="@id/go"
