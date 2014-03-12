@@ -5,9 +5,12 @@ import android.graphics.Bitmap;
 import android.os.Build;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.WebChromeClient;
+import android.webkit.WebResourceResponse;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -55,6 +58,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         webSettings.setBuiltInZoomControls(true);
 
         browser.setWebViewClient(new MyWebViewClient());
+        browser.setWebChromeClient(new MyWebChromeClient());
     }
 
 
@@ -65,6 +69,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
             view.loadUrl(url);
             return true;
         }
+
 
         @Override
         public void onPageFinished(WebView view, String url) {
@@ -77,6 +82,18 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
             super.onPageStarted(view, url, favicon);
             Toast.makeText(MainActivity.this,"Loading...",Toast.LENGTH_SHORT).show();
         }
+
+
+    }
+
+    private class MyWebChromeClient extends WebChromeClient {
+        @Override
+        public void onProgressChanged(WebView view, int newProgress) {
+            super.onProgressChanged(view, newProgress);
+            Log.d("Progress", "Current progress:"+newProgress);
+        }
+
+   
     }
 
 
